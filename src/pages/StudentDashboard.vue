@@ -5,12 +5,14 @@
     <div class="course-registration">
       <h3>Register for Courses</h3>
       <DataView :value="availableCourses" layout="grid">
-        <template #gridItem="{ data }">
+        <template #grid="slotProps">
+          <div v-for="data in slotProps.items" :key="data.id">
           <div class="course-item">
             <img :src="data.image" alt="Course Image" />
             <h4>{{ data.title }}</h4>
             <p>{{ data.description }}</p>
             <Button label="Register" @click="registerCourse(data.id)" />
+          </div>
           </div>
         </template>
       </DataView>
@@ -18,25 +20,29 @@
     <div class="my-courses">
       <h3>My Courses</h3>
       <DataView :value="registeredCourses" layout="grid">
-        <template #gridItem="{ data }">
+        <template #grid="slotProps">
+          <div v-for="data in slotProps.items" :key="data.id">
           <div class="course-item">
             <img :src="data.image" alt="Course Image" />
             <h4>{{ data.title }}</h4>
             <Button label="View Course" @click="viewCourse(data.id)" />
           </div>
+        </div>
         </template>
       </DataView>
     </div>
     <!-- <div class="tasks">
       <h3>My Tasks</h3>
       <DataView :value="tasks" layout="list">
-        <template #listItem="{ data }">
+        <template #list="slotProps">
+          <div v-for="data in slotProps.items" :key="data.id">
           <div class="task-item">
             <h4>{{ data.title }}</h4>
             <p>{{ data.description }}</p>
             <Button label="Submit Assignment" @click="submitAssignment(data.id)" v-if="data.type === 'assignment'" />
             <Button label="Complete Exercise" @click="completeExercise(data.id)" v-if="data.type === 'exercise'" />
             <Button label="Take Exam" @click="takeExam(data.id)" v-if="data.type === 'exam'" />
+          </div>
           </div>
         </template>
       </DataView>

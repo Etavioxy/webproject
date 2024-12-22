@@ -4,7 +4,7 @@
     <Menubar :model="items" />
     <div class="search-container">
       <InputText v-model="searchQuery" placeholder="Search courses..." />
-      <Button icon="pi pi-search" @click="performSearch" />
+      <Button label="Search" icon="pi pi-search" @click="performSearch" />
     </div>
   </header>
 </template>

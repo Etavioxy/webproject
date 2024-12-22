@@ -6,13 +6,15 @@
       <h3>Manage Courses</h3>
       <Button label="Create New Course" @click="createNewCourse" />
       <DataView :value="teacherCourses" layout="grid">
-        <template #gridItem="{ data }">
-          <div class="course-item">
-            <img :src="data.image" alt="Course Image" />
-            <h4>{{ data.title }}</h4>
-            <p>{{ data.description }}</p>
-            <Button label="Edit Course" @click="editCourse(data.id)" />
-            <Button label="Delete Course" @click="deleteCourse(data.id)" />
+        <template #grid="slotProps">
+          <div v-for="data in slotProps.items" :key="data.id">
+            <div class="course-item">
+              <img :src="data.image" alt="Course Image" />
+              <h4>{{ data.title }}</h4>
+              <p>{{ data.description }}</p>
+              <Button label="Edit Course" @click="editCourse(data.id)" />
+              <Button label="Delete Course" @click="deleteCourse(data.id)" />
+            </div>
           </div>
         </template>
       </DataView>
@@ -21,14 +23,16 @@
       <h3>Manage Course Materials</h3>
       <FileUpload name="demo[]" url="./upload" multiple accept="image/*,video/*,application/pdf" @upload="onUpload" />
       <DataView :value="courseMaterials" layout="grid">
-        <template #gridItem="{ data }">
-          <div class="material-item">
-            <img v-if="data.type === 'image'" :src="data.url" alt="Material Image" />
-            <video v-if="data.type === 'video'" controls>
-              <source :src="data.url" type="video/mp4" />
-            </video>
-            <a v-if="data.type === 'document'" :href="data.url" target="_blank">{{ data.name }}</a>
-            <Button label="Delete" @click="deleteMaterial(data.id)" />
+        <template #grid="slotProps">
+          <div v-for="data in slotProps.items" :key="data.id">
+            <div class="material-item">
+              <img v-if="data.type === 'image'" :src="data.url" alt="Material Image" />
+              <video v-if="data.type === 'video'" controls>
+                <source :src="data.url" type="video/mp4" />
+              </video>
+              <a v-if="data.type === 'document'" :href="data.url" target="_blank">{{ data.name }}</a>
+              <Button label="Delete" @click="deleteMaterial(data.id)" />
+            </div>
           </div>
         </template>
       </DataView>

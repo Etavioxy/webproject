@@ -2,10 +2,12 @@
   <div>
     <h3>Recommended Courses</h3>
     <DataView :value="courses">
-      <template #listItem="{ data }">
-        <div class="course-item">
-          <img :src="data.image" alt="Course Image" />
-          <h4>{{ data.title }}</h4>
+      <template #list="slotProps">
+        <div v-for="data in slotProps.items" :key="data.id">
+          <div class="course-item">
+            <img :src="data.image" alt="Course Image" />
+            <h4>{{ data.title }}</h4>
+          </div>
         </div>
       </template>
     </DataView>

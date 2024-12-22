@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Header />
     <h2>{{ course.title }}</h2>
     <p>{{ course.description }}</p>
     <TabView>
@@ -18,6 +19,7 @@
         <!-- Personal notes component or logic here -->
       </TabPanel>
     </TabView>
+    <Footer />
   </div>
 </template>
 
@@ -25,6 +27,8 @@
 import { computed } from 'vue';
 import { useStore } from 'vuex';
 import { useRoute } from 'vue-router';
+import Header from '../components/Header.vue';
+import Footer from '../components/Footer.vue';
 import TabView from 'primevue/tabview';
 import TabPanel from 'primevue/tabpanel';
 import Listbox from 'primevue/listbox';

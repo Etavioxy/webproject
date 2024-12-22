@@ -55,6 +55,14 @@ const course5 = new Course(5, '不负卿春—大学生职业生涯规划', '职
 const course6 = new Course(6, '无处不在—传染病', '医学', teacher5.id);
 const course7 = new Course(7, '中国近现代史纲要', '历史', teacher6.id);
 
+course1.students = [student1.id];
+course2.students = [student2.id];
+course3.students = [student3.id];
+course4.students = [student2.id];
+course5.students = [student1.id];
+course6.students = [student1.id];
+course7.students = [student1.id, student2.id, student3.id];
+
 export default createStore({
   state: {
     currentUser: new User(-1, '', '', 'visitor'),
